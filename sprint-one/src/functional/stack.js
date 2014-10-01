@@ -12,9 +12,12 @@ var makeStack = function(){
   };
 
   someInstance.pop = function(){
-    size && size--;
+    // size && size--;
+    if( size > 0 ){
+      size--;
+    }
     var result = storage[size];
-    delete storage[size];
+    delete storage[size]
     return result;
   };
 
