@@ -1,2 +1,7 @@
-#data-structures
-This is a project I completed as a student at [Hack Reactor](http://hackreactor.com). This project was worked on with a pair.
+#Data-Structures
+Implementation of the following data structures using JavaScript:
+- Linked List
+- Tree
+- Hash Table
+
+This is a project I completed as a student at [Hack Reactor](http://hackreactor.com).
