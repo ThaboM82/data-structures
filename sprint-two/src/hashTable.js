@@ -5,7 +5,6 @@ var HashTable = function(){
 };
 
 HashTable.prototype.insert = function(k, v){
-console.log("Entered",this._entries, this._limit)
   var i = getIndexBelowMaxForKey(k, this._limit);
   if (!this._storage[i]) this._storage[i] = [];
   this._storage[i].push([k,v]);
@@ -29,7 +28,6 @@ HashTable.prototype.retrieve = function(k){
 
 HashTable.prototype.remove = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-console.log("Removed",this._entries, this._limit, i, this._storage)
   if (this._storage[i]){
     var bucket = this._storage[i];
     for (var j = 0; j < bucket.length; j++){
@@ -37,7 +35,7 @@ console.log("Removed",this._entries, this._limit, i, this._storage)
         var value = bucket[j][1];
         this._storage[i] = this._storage[i].splice(0,j) + this._storage[i].splice(j+1);
         this._entries--;
-        if ( this._entries <= 0.5 * this._limit ){
+        if ( this._entries < 0.25 * this._limit ){
           this._limit /= 2;
           this._storage = changeHash(this._limit, this._storage);
         }
@@ -48,9 +46,9 @@ console.log("Removed",this._entries, this._limit, i, this._storage)
 };
 
 function changeHash(newLimit, oldStorage){
-  newStorage = makeLimitedArray(newLimit);
-  var bucketHashes = Object.keys(oldStorage);
-  bucketHashes.forEach(function(bucketHash){
+  var newStorage = makeLimitedArray(newLimit);
+  var bucketHashNumbers = Object.keys(oldStorage);
+  bucketHashNumbers.forEach(function(bucketHash){
     var bucket = oldStorage[bucketHash];
     if ( Array.isArray(bucket) ){
       bucket.forEach(function(keyvalue){
