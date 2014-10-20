@@ -4,5 +4,6 @@ Implementation of the following data structures using JavaScript:
 - Tree
 - Hash Table
 - Binary Search Tree
+- Heap
 
 This is a project I completed as a student at [Hack Reactor](http://hackreactor.com).
